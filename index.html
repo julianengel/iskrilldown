@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Is Krill Down?</title>
+<meta name="description" content="Is krill down? Yes*. (*probably.)" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%90%3C/text%3E%3C/svg%3E" />
+
+<style>
+  :root {
+    --bg-0: #04101e;
+    --bg-1: #061a30;
+    --bg-2: #0a2a4a;
+    --ink: #f5efe2;
+    --ink-dim: rgba(245, 239, 226, 0.62);
+    --ink-faint: rgba(245, 239, 226, 0.18);
+    --accent: #ff7a59;
+    --accent-soft: rgba(255, 122, 89, 0.18);
+    --rule: rgba(245, 239, 226, 0.14);
+    --serif: ui-serif, "Iowan Old Style", "Apple Garamond", Georgia, "Times New Roman", serif;
+    --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Inter, system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-0);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body {
+    background:
+      radial-gradient(120% 80% at 50% -10%, var(--bg-2) 0%, var(--bg-1) 35%, var(--bg-0) 75%);
+    min-height: 100vh;
+  }
+
+  /* subtle drifting bubbles, decorative only */
+  .ocean {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .ocean .bubble {
+    position: absolute;
+    bottom: -10vh;
+    width: var(--s, 8px);
+    height: var(--s, 8px);
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.55), rgba(255,255,255,0.05) 60%, transparent 70%);
+    opacity: 0;
+    animation: rise var(--d, 18s) linear var(--delay, 0s) infinite;
+    left: var(--x, 50%);
+    filter: blur(0.3px);
+  }
+  @keyframes rise {
+    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    10%  { opacity: 0.55; }
+    50%  { transform: translateY(-55vh) translateX(8px); }
+    100% { transform: translateY(-115vh) translateX(-6px); opacity: 0; }
+  }
+
+  /* ----- hero ----- */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 48px);
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50%      { opacity: 1;    transform: scale(1.2); }
+  }
+  .status { color: var(--ink-dim); }
+  .status b { color: var(--ink); font-weight: 600; }
+
+  .stage {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: clamp(24px, 6vh, 80px) 0;
+  }
+
+  .yes-wrap {
+    position: relative;
+    line-height: 0.82;
+  }
+  .yes {
+    display: inline-block;
+    font-family: var(--serif);
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: -0.04em;
+    font-size: clamp(8rem, 38vw, 28rem);
+    background: linear-gradient(180deg, #fff7e6 0%, #f5efe2 45%, #d9b58a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.05);
+    user-select: none;
+  }
+  .star {
+    display: inline-block;
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(2rem, 8vw, 5rem);
+    color: var(--accent);
+    vertical-align: top;
+    margin-left: 0.06em;
+    margin-top: 0.18em;
+    transform: translateY(-0.1em);
+    line-height: 1;
+  }
+
+  .footnote {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: clamp(12px, 1.6vw, 14px);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding-bottom: clamp(8px, 2vh, 16px);
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .footnote .ast { color: var(--accent); }
+  .footnote a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink-faint);
+    padding-bottom: 2px;
+    transition: border-color 160ms ease, color 160ms ease;
+  }
+  .footnote a:hover,
+  .footnote a:focus-visible { border-color: var(--accent); color: var(--accent); outline: none; }
+
+  /* ----- faq ----- */
+  .faq {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(48px, 10vh, 120px) clamp(20px, 4vw, 32px) clamp(64px, 12vh, 140px);
+  }
+  .faq-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin: 0 0 12px;
+  }
+  .faq-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 clamp(28px, 5vh, 48px);
+  }
+  .faq-title .amp { color: var(--accent); font-style: normal; }
+
+  details.q {
+    border-top: 1px solid var(--rule);
+    padding: 4px 0;
+  }
+  details.q:last-of-type { border-bottom: 1px solid var(--rule); }
+
+  details.q > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 56px 22px 4px;
+    position: relative;
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+    line-height: 1.35;
+    color: var(--ink);
+    transition: color 160ms ease;
+  }
+  details.q > summary::-webkit-details-marker { display: none; }
+  details.q > summary:hover { color: var(--accent); }
+  details.q > summary:focus-visible { outline: none; color: var(--accent); }
+
+  details.q > summary::after {
+    content: "";
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    transform: translateY(-50%);
+    background:
+      linear-gradient(currentColor, currentColor) center/100% 1.5px no-repeat,
+      linear-gradient(currentColor, currentColor) center/1.5px 100% no-repeat;
+    color: var(--ink-dim);
+    transition: transform 240ms cubic-bezier(.2,.7,.2,1), color 160ms ease;
+  }
+  details.q[open] > summary::after {
+    transform: translateY(-50%) rotate(45deg);
+    color: var(--accent);
+  }
+
+  .answer {
+    padding: 0 4px 24px;
+    color: var(--ink-dim);
+    font-size: clamp(0.98rem, 1.6vw, 1.05rem);
+    line-height: 1.6;
+    max-width: 64ch;
+  }
+  .answer a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--accent-soft);
+    text-decoration: none;
+    transition: border-color 160ms ease, color 160ms ease;
+  }
+  .answer a:hover { color: var(--accent); border-color: var(--accent); }
+  .answer code {
+    font-family: var(--mono);
+    font-size: 0.9em;
+    background: var(--accent-soft);
+    color: var(--ink);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* simple open animation */
+  details.q[open] .answer {
+    animation: drop 280ms ease both;
+  }
+  @keyframes drop {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ----- footer ----- */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--rule);
+    padding: 28px clamp(20px, 4vw, 48px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  footer .right { color: var(--ink-dim); }
+  footer .right span { color: var(--accent); }
+
+  @media (max-width: 520px) {
+    footer { flex-direction: column; text-align: center; }
+    .topbar { font-size: 10.5px; }
+    .topbar .status .label { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ocean .bubble,
+    .brand-dot { animation: none; }
+    details.q[open] .answer { animation: none; }
+    details.q > summary::after { transition: none; }
+  }
+</style>
+</head>
+
+<body>
+  <div class="ocean" aria-hidden="true">
+    <span class="bubble" style="--x:8%;  --s:6px;  --d:22s; --delay:0s"></span>
+    <span class="bubble" style="--x:18%; --s:10px; --d:28s; --delay:3s"></span>
+    <span class="bubble" style="--x:30%; --s:4px;  --d:18s; --delay:6s"></span>
+    <span class="bubble" style="--x:44%; --s:8px;  --d:24s; --delay:1s"></span>
+    <span class="bubble" style="--x:58%; --s:12px; --d:30s; --delay:4s"></span>
+    <span class="bubble" style="--x:69%; --s:5px;  --d:20s; --delay:8s"></span>
+    <span class="bubble" style="--x:81%; --s:9px;  --d:26s; --delay:2s"></span>
+    <span class="bubble" style="--x:92%; --s:6px;  --d:23s; --delay:7s"></span>
+  </div>
+
+  <section class="hero">
+    <header class="topbar">
+      <span class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        iskrilldown.com
+      </span>
+      <span class="status"><span class="label">Status: </span><b>Submerged</b></span>
+    </header>
+
+    <div class="stage">
+      <div class="yes-wrap">
+        <span class="yes" aria-label="Yes">YES</span><span class="star" aria-hidden="true">*</span>
+      </div>
+    </div>
+
+    <div class="footnote">
+      <span><span class="ast">*</span>&nbsp;probably.</span>
+      <a href="#faq">Learn more &rarr;</a>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <p class="faq-eyebrow">Frequently asked, frequently answered</p>
+    <h2 class="faq-title">A brief Q<span class="amp">&amp;</span>A about a small crustacean.</h2>
+
+    <details class="q" open>
+      <summary>Is krill down?</summary>
+      <div class="answer">
+        Yes. He&rsquo;s taking a deep dive to the bottom of the ocean and should be back soon.
+      </div>
+    </details>
+
+    <details class="q">
+      <summary>When will he be back?</summary>
+      <div class="answer">
+        Your guess is as good as ours. Crustaceans live by their own rules.
+      </div>
+    </details>
+
+    <details class="q">
+      <summary>What should I do in the meantime?</summary>
+      <div class="answer">
+        Ask your OpenClaw instance, or check the docs at
+        <a href="https://docs.openclaw.ai/help" rel="noopener">docs.openclaw.ai/help</a>.
+      </div>
+    </details>
+  </section>
+
+  <footer>
+    <span>Copyright 2025+ Crustaceans</span>
+    <span class="right">Made with <span>&hearts;</span> at the bottom of the sea</span>
+  </footer>
+</body>
+</html>
