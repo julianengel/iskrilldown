@@ -40,14 +40,14 @@
   <text x="80" y="430" font-family="ui-serif, Iowan Old Style, Georgia, serif"
         font-style="italic" font-weight="800" font-size="260" letter-spacing="-3"
         fill="url(#ink)">YES</text>
-  <text x="475" y="290" font-family="ui-serif, Iowan Old Style, Georgia, serif"
-        font-size="86" font-weight="500" fill="#ff7a59">*</text>
+  <text x="600" y="300" font-family="ui-serif, Iowan Old Style, Georgia, serif"
+        font-size="78" font-weight="500" fill="#ff7a59">*</text>
 
-  <!-- footnote -->
-  <text x="80" y="510" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
-        font-size="22" letter-spacing="2.5" fill="#f5efe2" opacity="0.78">
-    <tspan fill="#ff7a59">*</tspan> PROBABLY.
-  </text>
+  <!-- footnote: small raised * before PROBABLY -->
+  <text x="80" y="500" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="16" font-weight="600" fill="#ff7a59">*</text>
+  <text x="102" y="510" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="22" letter-spacing="2.5" fill="#f5efe2" fill-opacity="0.78">PROBABLY.</text>
 
   <!-- avatar with offline dot -->
   <g mask="url(#dotCut)">
