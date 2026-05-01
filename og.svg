@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" shape-rendering="geometricPrecision">
   <defs>
-    <radialGradient id="bg" cx="50%" cy="-10%" r="120%">
-      <stop offset="0%" stop-color="#0a2a4a"/>
-      <stop offset="35%" stop-color="#061a30"/>
-      <stop offset="100%" stop-color="#04101e"/>
-    </radialGradient>
     <linearGradient id="ink" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#fff7e6"/>
       <stop offset="45%" stop-color="#f5efe2"/>
@@ -20,7 +15,7 @@
     </mask>
   </defs>
 
-  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="#071c33"/>
 
   <!-- bubbles -->
   <g fill="white" opacity="0.10">
@@ -41,15 +36,17 @@
     <text x="1120" y="82" text-anchor="end" font-size="16" letter-spacing="2" fill="#f5efe2" opacity="0.5">STATUS: SUBMERGED</text>
   </g>
 
-  <!-- YES* hero -->
-  <g transform="translate(80,455)">
-    <text font-family="ui-serif, Iowan Old Style, Georgia, serif" font-style="italic" font-weight="800" font-size="340" fill="url(#ink)" letter-spacing="-14">YES</text>
-    <text x="510" y="-180" font-family="ui-serif, Iowan Old Style, Georgia, serif" font-size="120" fill="#ff7a59">*</text>
-  </g>
+  <!-- YES* hero: YES baseline y=430, font-size 260; * sits at top-right of S -->
+  <text x="80" y="430" font-family="ui-serif, Iowan Old Style, Georgia, serif"
+        font-style="italic" font-weight="800" font-size="260" letter-spacing="-3"
+        fill="url(#ink)">YES</text>
+  <text x="475" y="290" font-family="ui-serif, Iowan Old Style, Georgia, serif"
+        font-size="86" font-weight="500" fill="#ff7a59">*</text>
 
   <!-- footnote -->
-  <text x="80" y="540" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" letter-spacing="2.5" fill="#f5efe2" opacity="0.78">
-    <tspan fill="#ff7a59">*</tspan> PROBABLY. HE&#8217;S MOLTING.
+  <text x="80" y="510" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="22" letter-spacing="2.5" fill="#f5efe2" opacity="0.78">
+    <tspan fill="#ff7a59">*</tspan> PROBABLY.
   </text>
 
   <!-- avatar with offline dot -->
